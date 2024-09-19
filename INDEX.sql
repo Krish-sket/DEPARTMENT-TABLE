@@ -1,0 +1,33 @@
+CREATE TABLE IF NOT EXISTS DEPARTMENT(
+    EMPLOYEE_ID TEXT,
+    NAME TEXT,
+    DEPARTMENT_ID TEXT,
+    MANAGER_ID TEXT,
+    SALARY REAL
+);
+
+INSERT INTO DEPARTMENT(EMPLOYEE_ID,NAME,DEPARTMENT_ID,MANAGER_ID,SALARY) VALUES
+('100','ABC','90','100',24000),
+('101','DEF','90','100',17000),
+('102','GHI','90','102',9000),
+('103','JKL','60','103',4800),
+('104','MNO','60','103',25000),
+('105','PQR','50','100',4200),
+('106','STU','60','102',5000),
+('107','VWX','90','100',6000);
+
+SELECT department_id AS "DEPARTMENT CODE",
+COUNT(*) AS "No. of employees"
+FROM DEPARTMENT GROUP BY department_id;
+
+SELECT department_id, SUM(salary) FROM DEPARTMENT GROUP BY department_id;
+
+SELECT department_id AS 'DEPARTMENT CODE',
+COUNT(*) AS 'No. of employees',
+SUM(SALARY) AS "Total Salary" FROM DEPARTMENT GROUP BY department_id;
+
+SELECT department_id AS 'DEPARTMENT CODE',
+SUM(SALARY) AS "Total Salary" FROM DEPARTMENT WHERE MANAGER_ID='103' GROUP BY department_id;
+
+SELECT department_id, COUNT(*) AS 'No. of employees'
+FROM DEPARTMENT GROUP BY department_id HAVING COUNT(*)>2;
